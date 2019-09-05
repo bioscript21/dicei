@@ -1,0 +1,55 @@
+{% extends 'registros/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}<title>RV - Login </title>{% endblock %}
+
+{% block body %}
+
+<body class="bg-gradient-primary">
+
+    {% block navbar %}
+    {% endblock %}
+
+    {% block content %}
+    <div class="row justify-content-center">
+
+      <div class="col-xl-10 col-lg-12 col-md-9">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="text-left">
+                    <h1 class="h4 text-gray-900 mb-4">Bienvenido a RV - Silac!</h1>
+                  </div>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            <legend class="border-bottom mb-4">Introduzca sus credenciales</legend>
+                            {{ form|crispy }}
+                        </fieldset>
+                        <div class="form-group">
+                            <button class="btn btn-outline-info" type="submit">Iniciar sección</button>
+                            <small class="text-muted ml-2">
+				                <a href="{% url "password_reset" %}">Olvido su contraseña?</a>
+			                </small>
+                        </div>
+                    </form>
+                  <br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    {% endblock %}
+
+</body>
+{% endblock %}

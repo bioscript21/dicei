@@ -1,0 +1,101 @@
+{% extends 'registros/incluido_show.html' %}
+{% load staticfiles %}
+
+{% block head %}
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>RV - INCLUIDOS-Logs</title>
+
+  <!-- Custom fonts for this template -->
+  <link href="{% static 'registros/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'registros/css/sb-admin-2.min.css' %}" rel="stylesheet">
+
+  <!-- Custom styles for this page -->
+  <link href="{% static 'registros/vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+
+</head>
+{% endblock %}
+
+{% block content %}
+        <div class="container-fluid">
+          <div class="card shadow mb-4">
+            <h3 class="ml-4 mt-4 text-primary">Historial del sujeto {{ history.first.numero }}, {{ history.first.iniciales }}</h3>
+                <div class="card-body">
+                    <div class="table-responsive">
+                     <table class="table table-bordered table-sm compactid=" id="dataTable" style="width: 100%" cellspacing="0">
+                        <thead class="small">
+                            <tr>
+                                <th scope="col">Fecha/Hora</th>
+                                <th scope="col">Comentario</th>
+                            <th scope="col">Usuario</th>
+                         </tr>
+                        </thead>
+                        <tbody>
+                            {% for history in history %}
+                            <tr>
+                                <td>{{ history.history_date }}</td>
+                                <td>{{ history.get_history_type_display }}</td>
+                                <td>{{ history.history_user }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                     </table>
+                    </div>
+                </div>
+          </div>
+          <div class="card shadow mb-4">
+            <h3 class="ml-4 mt-4 text-success">Ultimo cambio</h3>
+                <div class="card-body">
+                    <div class="table-responsive">
+                     <table class="table table-bordered table-sm compactid=" id="dataTable" style="width: 100%" cellspacing="0">
+                        <thead class="small">
+                            <tr>
+                                <th scope="col">Campo</th>
+                                <th scope="col">Anterior</th>
+                            <th scope="col">Actual</th>
+                         </tr>
+                        </thead>
+                        <tbody>
+                            {% for change in history_delta.changes %}
+                            <tr>
+                                <td>{{ change.field }}</td>
+                                <td>{{ change.old }}</td>
+                                <td>{{ change.new }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                     </table>
+                    </div>
+                </div>
+                <hr>
+                <a class="ml-3 mb-3" href="{% url 'inc_shows' %}">Volver</a>
+          </div>
+        </div>
+{% endblock %}
+
+{% block bootstrap_js %}
+  <!-- Bootstrap core JavaScript-->
+  <script src="{% static 'registros/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'registros/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="{% static 'registros/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="{% static 'registros/js/sb-admin-2.min.js' %}"></script>
+
+  <!-- Page level plugins -->
+  <script src="{% static 'registros/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'registros/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="{% static 'registros/js/demo/datatables-demo.js' %}"></script>
+{% endblock %}

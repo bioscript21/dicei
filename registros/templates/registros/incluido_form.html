@@ -1,0 +1,33 @@
+{% extends 'registros/base.html' %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}<title>RV - Incluido / No Incluido</title>{% endblock %}
+
+{% block content %}
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <img src="{% static 'registros/img/logo.png' %}" style="width:100px;">
+          <h1 class="h3 mb-2 text-gray-800">Anexo X. Registro de Incluidos / No Incluidos. IFV/NEU/04 SILAC Versión 1.4</h1>
+          <p class="mb-4">Debe tener en cuenta lo recomendado en los instructivos......</p>
+          <div class="panel panel-default">
+              <div class="panel-body">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <fieldset class="form-group col-md-4">
+                        <legend class="border-bottom mb-4">Incluido / No Incluido</legend>
+                        {{ form|crispy }}
+                    </fieldset>
+                    <div class="form-group">
+                        <button class="btn btn-outline-primary" type="submit">Guardar</button>
+                    </div>
+                </form>
+                <hr>
+                <a href="{% url 'inc_shows' %}">Volver</a>
+              </div>
+          </div>
+        </div>
+
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'registros/base.html' %}
+{% load staticfiles %}
+
+{% block title %}<title>RV - Ver Incluido / No Incluido</title>{% endblock %}
+
+{% block content %}
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <img src="{% static 'registros/img/logo.png' %}" style="width:100px;">
+          <h1 class="h3 mb-2 text-gray-800">Anexo X. Registro de Incluidos / No Incluidos. IFV/NEU/04 SILAC Versión 1.4</h1>
+          <h2 class="ml-2">Incluido</h2>
+          <div class="panel panel-default">
+              <div class="panel-body">
+                  <div class="form-group">
+                       <div class="form-group col-md-4">
+                          <label for="numero">No:</label>
+                          {{ incluido.numero }}
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="iniciales">Iniciales del sujeto:</label>
+                          {{ incluido.iniciales }}
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="feceva">Fecha de evaluación:</label>
+                          {{ incluido.feceva }}
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="inclusion">El sujeto se incluyó:</label>
+                          {{ incluido.inclusion }}
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="fecinc">Fecha de inclusión:</label>
+                          {{ incluido.fecinc }}
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="numinc">Si incluido refiera número:</label>
+                          {{ incluido.numinc }}
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="causano">Si no incluido refiera # de causa:</label>
+                          {{ incluido.causano }}
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="investigador">Nombre del investigador:</label>
+                          {{ incluido.investigador }}
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="firma">Firma:</label>
+                          {{ incluido.firma }}
+                        </div>
+                  </div>
+                  <hr>
+                  <a href="{% url 'inc_shows' %}">Volver</a>
+              </div>
+          </div>
+        </div>
+
+{% endblock %}
