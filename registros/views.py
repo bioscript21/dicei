@@ -36,6 +36,11 @@ class IncUpdateView(LoginRequiredMixin, UpdateView):
     fields = '__all__'
 
 
+class IncDeleteView(LoginRequiredMixin, DeleteView):
+    model = Incluido
+    success_url = reverse_lazy('inc_shows')
+
+
 class IncLogsView(LoginRequiredMixin, ListView):
     model = Incluido
     template_name = 'registros/incluido_history.html'
@@ -43,17 +48,19 @@ class IncLogsView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super(IncLogsView, self).get_context_data(**kwargs)
         qry = Incluido.history.filter(id=self.kwargs['pk'])
-        nr = qry.first()
-        ar = qry.first().prev_record
+        delta = []
+        for i in range(0, len(qry)-1):
+            delta.append(qry[i].diff_against(qry[i+1]))
         context['history'] = qry
-        context['history_delta'] = nr.diff_against(ar)
+        context['history_delta'] = delta
 
         return context
 
 
-class IncDeleteView(LoginRequiredMixin, DeleteView):
-    model = Incluido
-    success_url = reverse_lazy('inc_shows')
+class IncHistoricoView(LoginRequiredMixin, ListView):
+    queryset = Incluido.history.all()
+    template_name = 'registros/incluido_audit.html'
+    context_object_name = 'queryset'
 
 
 def instructivos(request):

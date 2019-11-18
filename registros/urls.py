@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import IncView, IncDetailView, IncCreateView, IncUpdateView, IncDeleteView, IncLogsView
+from .views import IncView, IncDetailView, IncCreateView, IncUpdateView, IncDeleteView, IncLogsView, IncHistoricoView
 from . import views
 
 urlpatterns = [
@@ -12,6 +12,7 @@ urlpatterns = [
     path('incluido_edit/<int:pk>/actualizar/', IncUpdateView.as_view(), name='inc_edit'),
     path('incluido_eliminar/<int:pk>/eliminar/', IncDeleteView.as_view(), name='inc_del'),
     path('incluido_historial/<int:pk>/Logs/', IncLogsView.as_view(), name='inc_logs'),
+    path('incluido_audit/Auditoria/', IncHistoricoView.as_view(), name='inc_audit'),
     path('goodcl/', views.goodcl, name='goodcl'),
     path('aboutus/', views.aboutus, name='aboutus'),
 ]

@@ -30,72 +30,61 @@
             <h3 class="ml-4 mt-4 text-primary">Historial del sujeto {{ history.first.numero }}, {{ history.first.iniciales }}</h3>
                 <div class="card-body">
                     <div class="table-responsive">
-                     <table class="table table-bordered table-sm compactid=" id="dataTable" style="width: 100%" cellspacing="0">
+                     <table class="table table-bordered table-sm compact" id="dataTable" style="width: 100%" cellspacing="0">
                         <thead class="small">
                             <tr>
-                                <th scope="col">Fecha/Hora</th>
-                                <th scope="col">Comentario</th>
-                            <th scope="col">Usuario</th>
-                         </tr>
-                        </thead>
-                        <tbody>
-                            {% for history in history %}
-                            <tr>
-                                <td>{{ history.history_date }}</td>
-                                <td>{{ history.get_history_type_display }}</td>
-                                <td>{{ history.history_user }}</td>
+                                <th class="text-primary text-center" colspan="3">ANTERIOR REGISTRO</th>
+                                <th class="text-success text-center" colspan="6">ACTUALIZACION DEL REGISTRO</th>
                             </tr>
+                        </thead>
+                        <thead class="small">
+                            <tr>
+                                <th class="text-primary" scope="col">FECHA/HORA</th>
+                                <th class="text-primary" scope="col">ACCION</th>
+                                <th class="text-primary" scope="col">USUARIO</th>
+                                <th class="text-success" scope="col">FECHA/HORA</th>
+                                <th class="text-success"scope="col">ACCION</th>
+                                <th class="text-success" scope="col">CAMPO</th>
+                                <th class="text-success" scope="col">ANTERIOR</th>
+                                <th class="text-success" scope="col">NUEVO</th>
+                                <th class="text-success" scope="col">USUARIO</th>
+                            </tr>
+                        </thead>
+                        <tfoot class="small">
+                            <tr>
+                                <th class="text-primary" scope="col">FECHA/HORA</th>
+                                <th class="text-primary" scope="col">ACCION</th>
+                                <th class="text-primary" scope="col">USUARIO</th>
+                                <th class="text-success" scope="col">FECHA/HORA</th>
+                                <th class="text-success" scope="col">ACCION</th>
+                                <th class="text-success" scope="col">CAMPO</th>
+                                <th class="text-success" scope="col">ANTERIOR</th>
+                                <th class="text-success" scope="col">NUEVO</th>
+                                <th class="text-success" scope="col">USUARIO</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            {% for change in history_delta %}
+                                {% for i in change.changes %}
+                                    <tr>
+                                        <td>{{ change.old_record.history_date }}</td>
+                                        <td>{{ change.old_record.get_history_type_display }}</td>
+                                        <td>{{ change.old_record.history_user }}</td>
+                                        <td>{{ change.new_record.history_date }}</td>
+                                        <td>{{ change.new_record.get_history_type_display }}</td>
+                                        <td>{{ i.field }}</td>
+                                        <td>{{ i.old }}</td>
+                                        <td>{{ i.new }}</td>
+                                        <td>{{ change.new_record.history_user }}</td>
+                                    </tr>
+                                 {% endfor %}
                             {% endfor %}
                         </tbody>
                      </table>
                     </div>
                 </div>
           </div>
-          <div class="card shadow mb-4">
-            <h3 class="ml-4 mt-4 text-success">Ultimo cambio</h3>
-                <div class="card-body">
-                    <div class="table-responsive">
-                     <table class="table table-bordered table-sm compactid=" id="dataTable" style="width: 100%" cellspacing="0">
-                        <thead class="small">
-                            <tr>
-                                <th scope="col">Campo</th>
-                                <th scope="col">Anterior</th>
-                            <th scope="col">Actual</th>
-                         </tr>
-                        </thead>
-                        <tbody>
-                            {% for change in history_delta.changes %}
-                            <tr>
-                                <td>{{ change.field }}</td>
-                                <td>{{ change.old }}</td>
-                                <td>{{ change.new }}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                     </table>
-                    </div>
-                </div>
-                <hr>
-                <a class="ml-3 mb-3" href="{% url 'inc_shows' %}">Volver</a>
-          </div>
+          <hr>
+            <a class="ml-3 mb-3" href="{% url 'inc_shows' %}">Volver</a>
         </div>
-{% endblock %}
-
-{% block bootstrap_js %}
-  <!-- Bootstrap core JavaScript-->
-  <script src="{% static 'registros/vendor/jquery/jquery.min.js' %}"></script>
-  <script src="{% static 'registros/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="{% static 'registros/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="{% static 'registros/js/sb-admin-2.min.js' %}"></script>
-
-  <!-- Page level plugins -->
-  <script src="{% static 'registros/vendor/datatables/jquery.dataTables.min.js' %}"></script>
-  <script src="{% static 'registros/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="{% static 'registros/js/demo/datatables-demo.js' %}"></script>
 {% endblock %}

@@ -136,11 +136,18 @@
           <span>Formulas</span></a>
       </li>
 
-      <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Resultados</span></a>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePagesI" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Auditoría</span>
+        </a>
+        <div id="collapsePagesI" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">escoja la opción deseada:</h6>
+            <a class="collapse-item" href="#">Anexo V</a>
+            <a class="collapse-item" href="{% url 'inc_audit' %}">Anexo X</a>
+          </div>
+        </div>
       </li>
 
       <!-- Divider -->

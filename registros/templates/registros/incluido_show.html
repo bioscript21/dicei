@@ -45,46 +45,46 @@
                 <table class="table table-bordered table-sm compact" id="dataTable" style="width: 100%" cellspacing="0">
                      <thead class="small">
                       <tr>
-                        <th>No</th>
-                        <th>Iniciales</th>
-                        <th>Fecha Evaluación</th>
-                        <th>Inclusión</th>
-                        <th>Fecha Inclusión</th>
-                        <th>No Inclusión</th>
-                        <th>Causa no Inclusión</th>
-                        <th>Investigador</th>
-                        <th>Firma</th>
+                        <th class="text-primary">No</th>
+                        <th class="text-primary">Iniciales</th>
+                        <th class="text-primary">Fecha Evaluación</th>
+                        <th class="text-primary">Inclusión</th>
+                        <th class="text-primary">Fecha Inclusión</th>
+                        <th class="text-primary">No Inclusión</th>
+                        <th class="text-primary">Causa no Inclusión</th>
+                        <th class="text-primary">Investigador</th>
+                        <th class="text-primary">Firma</th>
                         {% if perms.registros.view_incluido %}
-                        <th>Acciones</th>
+                        <th class="text-primary">Acciones</th>
                         {% endif %}
                         {% if perms.registros.change_incluido %}
-                        <th>Logs</th>
+                        <th class="text-primary">Logs</th>
                         {% endif %}
                       </tr>
                     </thead>
                     <tfoot class="small">
                       <tr>
-                        <th>No</th>
-                        <th>Iniciales</th>
-                        <th>Fecha Evaluación</th>
-                        <th>Inclusión</th>
-                        <th>Fecha Inclusión</th>
-                        <th>No Inclusión</th>
-                        <th>Causa no Inclusión</th>
-                        <th>Investigador</th>
-                        <th>Firma</th>
+                        <th class="text-primary">No</th>
+                        <th class="text-primary">Iniciales</th>
+                        <th class="text-primary">Fecha Evaluación</th>
+                        <th class="text-primary">Inclusión</th>
+                        <th class="text-primary">Fecha Inclusión</th>
+                        <th class="text-primary">No Inclusión</th>
+                        <th class="text-primary">Causa no Inclusión</th>
+                        <th class="text-primary">Investigador</th>
+                        <th class="text-primary">Firma</th>
                         {% if perms.registros.view_incluido %}
-                        <th>Acciones</th>
+                        <th class="text-primary">Acciones</th>
                         {% endif %}
                         {% if perms.registros.change_incluido %}
-                        <th>Logs</th>
+                        <th class="text-primary">Logs</th>
                         {% endif %}
                       </tr>
                     </tfoot>
                     <tbody class="small">
                     {% for dato in datos %}
                       <tr>
-                        <td>{{ dato.numero }}</td>
+                        <td>{{ dato.numero}}</td>
                         <td>{{ dato.iniciales }}</td>
                         <td>{{ dato.feceva|date:'d/m/Y' }}</td>
                         <td>{{ dato.get_inclusion_display }}</td>
@@ -94,17 +94,17 @@
                         <td>{{ dato.investigador }}</td>
                         <td>{{ dato.get_firma_display }}</td>
                         <td><center>
-                            <a class="fas fa-eye" href="{% url 'inc_detail' dato.id %}"></a>
+                            <a class="fas fa-eye text-dark" href="{% url 'inc_detail' dato.id %}"></a>
                             {% if perms.registros.change_incluido %}
-                            <a class="fas fa-edit" href="{% url 'inc_edit' dato.id %}"></a>
+                            <a class="fas fa-edit text-success" href="{% url 'inc_edit' dato.id %}"></a>
                             {% endif %}
                             {% if perms.registros.delete_incluido %}
-                            <a class="fas fa-trash" href="{% url 'inc_del' dato.id %}"></a>
+                            <a class="fas fa-trash text-danger" href="{% url 'inc_del' dato.id %}"></a>
                             {% endif %}
                             </center>
                         </td>
                         {% if perms.registros.change_incluido %}
-                        <td><a class="fas fa-history" href="{% url 'inc_logs' dato.id %}"></a></td>
+                        <td><a class="fas fa-history text-warning" href="{% url 'inc_logs' dato.id %}"></a></td>
                         {% endif %}
                       </tr>
                     {% endfor %}
@@ -134,5 +134,6 @@
   <script src="{% static 'registros/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
 
   <!-- Page level custom scripts -->
+  <script src="{% static 'registros/js/table.admin-2.js' %}"></script>
   <script src="{% static 'registros/js/demo/datatables-demo.js' %}"></script>
 {% endblock %}
