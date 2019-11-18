@@ -1,0 +1,149 @@
+{% extends 'registros/base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>RV - Recepción|Devolución del PI</title>
+
+  <!-- Custom fonts for this template -->
+  <link href="{% static 'registros/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'registros/css/sb-admin-2.min.css' %}" rel="stylesheet">
+
+  <!-- Custom styles for this page -->
+  <link href="{% static 'registros/vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+
+</head>
+{% endblock %}
+
+{% block content %}
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <img src="{% static 'registros/img/logo.png' %}" style="width:100px;">
+          <h1 class="h3 mb-2 text-gray-800">Anexo V. Modelo de recepción y devolución del producto de investigación en el vacunatorio. IFV/NEU/04 SILAC Versión 1.4</h1>
+          <p class="mb-4">En este página se muestra el control sobre el producto de investigación en el vacunatorio. Debe tener en cuenta ......</p>
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              {% if perms.registros.add_recdevpi %}
+              <a class="btn btn-primary" href="{% url 'rdpi_add' %}" role="button">Añadir +</a>
+              {% endif %}
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered table-sm compact" id="dataTable" style="width: 100%" cellspacing="0">
+                     <thead class="small">
+                         <tr>
+                             <th class="text-primary text-center" colspan="5">Recepción del PI en el vacunatorio</th>
+                             <th class="text-primary text-center" colspan="5">Devolución del PI en el vacunatorio</th>
+                             <th class="text-primary text-center" colspan="2">Utilidades</th>
+                         </tr>
+                     </thead>
+                     <thead class="small">
+                      <tr>
+                        <th class="text-primary">Fecha</th>
+                        <th class="text-primary">Cant. Bolsas individuales</th>
+                        <th class="text-primary">Código de las bolsas</th>
+                        <th class="text-primary">Entrega</th>
+                        <th class="text-primary">Recibe</th>
+                        <th class="text-primary">Cant. bolsas  ind. utilizadas</th>
+                        <th class="text-primary">Cant. bolsas  ind. sin utilizar</th>
+                        <th class="text-primary">Código bolsas sin utilizar</th>
+                        <th class="text-primary">Entega</th>
+                        <th class="text-primary">Recibe</th>
+                        {% if perms.registros.view_recdevpi %}
+                        <th class="text-primary">Acciones</th>
+                        {% endif %}
+                        {% if perms.registros.change_recdevpi %}
+                        <th class="text-primary">Logs</th>
+                        {% endif %}
+                      </tr>
+                    </thead>
+                    <tfoot class="small">
+                      <tr>
+                        <th class="text-primary">Fecha</th>
+                        <th class="text-primary">Cant. Bolsas individuales</th>
+                        <th class="text-primary">Código de las bolsas</th>
+                        <th class="text-primary">Entrega</th>
+                        <th class="text-primary">Recibe</th>
+                        <th class="text-primary">Cant. bolsas  ind. utilizadas</th>
+                        <th class="text-primary">Cant. bolsas  ind. sin utilizar</th>
+                        <th class="text-primary">Código bolsas sin utilizar</th>
+                        <th class="text-primary">Entega</th>
+                        <th class="text-primary">Recibe</th>
+                        {% if perms.registros.view_recdevpi %}
+                        <th class="text-primary">Acciones</th>
+                        {% endif %}
+                        {% if perms.registros.change_recdevpi %}
+                        <th class="text-primary">Logs</th>
+                        {% endif %}
+                      </tr>
+                    </tfoot>
+                    <tbody class="small">
+                    {% for dato in datos %}
+                      <tr>
+                        <td>{{ dato.fecha|date:'d/m/Y' }}</td>
+                        <td>{{ dato.cantidad_1 }}</td>
+                        <td>{{ dato.codigo_1 }}</td>
+                        <td>{{ dato.entrega_1 }}</td>
+                        <td>{{ dato.recibe_1 }}</td>
+                        <td>{{ dato.cantidad_2 }}</td>
+                        <td>{{ dato.cantidad_3 }}</td>
+                        <td>{{ dato.codigo_2 }}</td>
+                        <td>{{ dato.entrega_2 }}</td>
+                        <td>{{ dato.recibe_2 }}</td>
+                        <td><center>
+                            <a class="fas fa-eye text-dark" href="{% url 'rdpi_detail' dato.id %}"></a>
+                            {% if perms.registros.change_recdevpi %}
+                            <a class="fas fa-edit text-success" href="{% url 'rdpi_edit' dato.id %}"></a>
+                            {% endif %}
+                            {% if perms.registros.delete_recdevpi %}
+                            <a class="fas fa-trash text-danger" href="{% url 'rdpi_del' dato.id %}"></a>
+                            {% endif %}
+                            </center>
+                        </td>
+                        {% if perms.registros.change_recdevpi %}
+                        <td><a class="fas fa-history text-warning" href="{% url 'rdpi_logs' dato.id %}"></a></td>
+                        {% endif %}
+                      </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+{% endblock %}
+
+{% block bootstrap_js %}
+  <!-- Bootstrap core JavaScript-->
+  <script src="{% static 'registros/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'registros/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="{% static 'registros/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="{% static 'registros/js/sb-admin-2.min.js' %}"></script>
+
+  <!-- Page level plugins -->
+  <script src="{% static 'registros/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'registros/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="{% static 'registros/js/table.admin-2.js' %}"></script>
+  <script src="{% static 'registros/js/demo/datatables-demo.js' %}"></script>
+{% endblock %}

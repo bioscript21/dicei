@@ -1,0 +1,64 @@
+{% extends 'registros/base.html' %}
+{% load staticfiles %}
+
+{% block title %}<title>RV - Ver Recepción|Devolución del PI</title>{% endblock %}
+
+{% block content %}
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <img src="{% static 'registros/img/logo.png' %}" style="width:100px;">
+          <h1 class="h3 mb-2 text-gray-800">Anexo V. Modelo de recepción y devolución del producto de investigación en el vacunatorio. IFV/NEU/04 SILAC Versión 1.4</h1>
+          <h2 class="ml-2">Recepción|Devolución del PI en el vacunatorio</h2>
+          <div class="panel panel-default">
+              <div class="panel-body">
+                  <div class="form-group">
+                       <div class="form-group col-md-4">
+                          <label for="fecha">Fecha:</label>
+                          {{ recdevpi.fecha }}
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="cantidad_1">Cantidad de bolsas individuales:</label>
+                          {{ recdevpi.cantidad_1 }}
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="codigo_1">Código de las bolsas:</label>
+                          {{ recdevpi.codigo_1 }}
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="entrega_1">Entrega:</label>
+                          {{ recdevpi.entrega_1 }}
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="recibe_1">Recibe:</label>
+                          {{ recdevpi.recibe_1 }}
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="cantidad_2">Cantidad de bolsas individuales utilizadas:</label>
+                          {{ recdevpi.cantidad_2 }}
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="cantidad_3">Cantidad de bolsas individuales sin utilizar:</label>
+                          {{ recdevpi.cantidad_3 }}
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="codigo_2">Código de las bolsas sin utilizar:</label>
+                          {{ recdevpi.codigo_2 }}
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="entrega_2">Entrega:</label>
+                          {{ recdevpi.entrega_2 }}
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="recibe_2">Recibe:</label>
+                          {{ recdevpi.recibe_2 }}
+                        </div>
+                  </div>
+                  <hr>
+                  <a href="{% url 'rdpi_shows' %}">Volver</a>
+              </div>
+          </div>
+        </div>
+
+{% endblock %}

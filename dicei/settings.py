@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'import_export',
     'simple_history',
+    'django_plotly_dash.apps.DjangoPlotlyDashConfig',
 
     'registros.apps.RegistrosConfig',
     'usuarios.apps.UsuariosConfig',

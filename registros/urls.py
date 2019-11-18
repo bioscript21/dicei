@@ -1,5 +1,7 @@
 from django.urls import path
-from .views import IncView, IncDetailView, IncCreateView, IncUpdateView, IncDeleteView, IncLogsView, IncHistoricoView
+from .views import (IncView, IncDetailView, IncCreateView, IncUpdateView, IncDeleteView, IncLogsView, IncHistoricoView,
+                    RDPIView, RDPIDetailView, RDPICreateView, RDPIUpdateView, RDPIDeleteView, RDPILogsView,
+                    RDPIHistoricoView)
 from . import views
 
 urlpatterns = [
@@ -13,6 +15,13 @@ urlpatterns = [
     path('incluido_eliminar/<int:pk>/eliminar/', IncDeleteView.as_view(), name='inc_del'),
     path('incluido_historial/<int:pk>/Logs/', IncLogsView.as_view(), name='inc_logs'),
     path('incluido_audit/Auditoria/', IncHistoricoView.as_view(), name='inc_audit'),
+    path('rdpi/mostrar/', RDPIView.as_view(), name='rdpi_shows'),
+    path('rdpi_detail/<int:pk>/', RDPIDetailView.as_view(), name='rdpi_detail'),
+    path('rdpi/nuevo/', RDPICreateView.as_view(), name='rdpi_add'),
+    path('rdpi_edit/<int:pk>/actualizar/', RDPIUpdateView.as_view(), name='rdpi_edit'),
+    path('rdpi_eliminar/<int:pk>/eliminar/', RDPIDeleteView.as_view(), name='rdpi_del'),
+    path('rdpi_historial/<int:pk>/Logs/', RDPILogsView.as_view(), name='rdpi_logs'),
+    path('rdpi_audit/Auditoria/', RDPIHistoricoView.as_view(), name='rdpi_audit'),
     path('goodcl/', views.goodcl, name='goodcl'),
     path('aboutus/', views.aboutus, name='aboutus'),
 ]

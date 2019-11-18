@@ -1,0 +1,85 @@
+{% extends 'registros/recdevpi_show.html' %}
+{% load staticfiles %}
+
+{% block content %}
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <img src="{% static 'registros/img/logo.png' %}" style="width:100px;">
+          <h3 class="h3 mb-2 text-gray-800">Registro de Auditoría "Anexo V. Modelo de recepción y devolución del producto de investigación en el vacunatorio. IFV/NEU/04 SILAC Versión 1.4"</h3>
+          <p class="mb-4">Aquí puede observar la trazabilidad al 100 % de la base de datos con respecto a este modelo.</p>
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3"></div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered table-sm compact" id="dataTable" style="width: 100%" cellspacing="0">
+                     <thead class="small">
+                      <tr>
+                        <th>ID</th>
+                        <th>FECHA</th>
+                        <th>CANT. BOLSAS INDIVIDUALES</th>
+                        <th>CODIGO BOLSAS</th>
+                        <th>ENTREGA</th>
+                        <th>RECIBE</th>
+                        <th>CANT. BOLSAS IND. UTILIZADAS</th>
+                        <th>CANT. BOLSAS IND. SIN UTILIZAR</th>
+                        <th>CODIGO BOLSAS SIN UTILIZAR</th>
+                        <th>ENTEGA</th>
+                        <th>RECIBE</th>
+                        <th>ID HISTORIAL</th>
+                        <th>FECHA HISTORIAL</th>
+                        <th>RAZON</th>
+                        <th>USUARIO</th>
+                      </tr>
+                    </thead>
+                    <tfoot class="small">
+                      <tr>
+                        <th>ID</th>
+                        <th>FECHA</th>
+                        <th>CANT. BOLSAS INDIVIDUALES</th>
+                        <th>CODIGO BOLSAS</th>
+                        <th>ENTREGA</th>
+                        <th>RECIBE</th>
+                        <th>CANT. BOLSAS IND. UTILIZADAS</th>
+                        <th>CANT. BOLSAS IND. SIN UTILIZAR</th>
+                        <th>CODIGO BOLSAS SIN UTILIZAR</th>
+                        <th>ENTEGA</th>
+                        <th>RECIBE</th>
+                        <th>ID HISTORIAL</th>
+                        <th>FECHA HISTORIAL</th>
+                        <th>RAZON</th>
+                        <th>USUARIO</th>
+                      </tr>
+                    </tfoot>
+                    <tbody class="small">
+                    {% for dato in queryset %}
+                      <tr>
+                        <td>{{ dato.id}}</td>
+                        <td>{{ dato.fecha|date:'d/m/Y' }}</td>
+                        <td>{{ dato.cantidad_1 }}</td>
+                        <td>{{ dato.codigo_1 }}</td>
+                        <td>{{ dato.entrega_1 }}</td>
+                        <td>{{ dato.recibe_1 }}</td>
+                        <td>{{ dato.cantidad_2 }}</td>
+                        <td>{{ dato.cantidad_3 }}</td>
+                        <td>{{ dato.codigo_2 }}</td>
+                        <td>{{ dato.entrega_2 }}</td>
+                        <td>{{ dato.recibe_2 }}</td>
+                        <td>{{ dato.history_id }}</td>
+                        <td>{{ dato.history_date }}</td>
+                        <td>{{ dato.history_type }}</td>
+                        <td>{{ dato.history_user }}</td>
+                      </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+{% endblock %}

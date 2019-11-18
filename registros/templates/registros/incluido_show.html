@@ -50,7 +50,7 @@
                         <th class="text-primary">Fecha Evaluación</th>
                         <th class="text-primary">Inclusión</th>
                         <th class="text-primary">Fecha Inclusión</th>
-                        <th class="text-primary">No Inclusión</th>
+                        <th class="text-primary">Codigo del Sujeto</th>
                         <th class="text-primary">Causa no Inclusión</th>
                         <th class="text-primary">Investigador</th>
                         <th class="text-primary">Firma</th>
@@ -69,7 +69,7 @@
                         <th class="text-primary">Fecha Evaluación</th>
                         <th class="text-primary">Inclusión</th>
                         <th class="text-primary">Fecha Inclusión</th>
-                        <th class="text-primary">No Inclusión</th>
+                        <th class="text-primary">Codigo del Sujeto</th>
                         <th class="text-primary">Causa no Inclusión</th>
                         <th class="text-primary">Investigador</th>
                         <th class="text-primary">Firma</th>
@@ -89,7 +89,7 @@
                         <td>{{ dato.feceva|date:'d/m/Y' }}</td>
                         <td>{{ dato.get_inclusion_display }}</td>
                         <td>{{ dato.fecinc|date:'d/m/Y' }}</td>
-                        <td>{{ dato.numinc }}</td>
+                        <td>{{ dato.codigo }}</td>
                         <td>{{ dato.causano }}</td>
                         <td>{{ dato.investigador }}</td>
                         <td>{{ dato.get_firma_display }}</td>

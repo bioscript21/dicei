@@ -37,6 +37,7 @@ urlpatterns = [
         template_name='usuarios/password_change.html'), name='password_change'),
     path('password-change/done/', auth_views.PasswordChangeDoneView.as_view(
         template_name='usuarios/password_change_done.html'), name='password_change_done'),
+    path('django_plotly_dash/', include('django_plotly_dash.urls')),
     path('', include('registros.urls')),
 ]
 
